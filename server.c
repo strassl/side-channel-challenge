@@ -3,23 +3,27 @@
 #include <stdbool.h>
 #include <string.h>
 #include <math.h>
+#include <unistd.h>
 
-const char* secret = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const char* secret = "INFORMATIONISTHERESOLUTIONOFUNCERTAINTY";
 
 bool check_secret(char *provided) {
     size_t secret_len = strlen(secret);
     size_t provided_len = strlen(provided);
 
-    if (provided_len != secret_len) {
-        return false;
-    }
-
     for (size_t i=0; i < secret_len; i++) {
+        if (i >= provided_len) {
+            return false;
+        }
+
         char s = secret[i];
         char p = provided[i];
+
         if (s != p) {
             return false;
         }
+
+        usleep(100);
     }
 
     return true;

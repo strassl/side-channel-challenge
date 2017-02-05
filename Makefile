@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=c99 -pedantic -Wall -Werror -g -c
+CFLAGS = -std=c99 -pedantic -Wall -Werror -g -c -D_XOPEN_SOURCE=500
 LFLAGS =
 
 .PHONY: clean all
