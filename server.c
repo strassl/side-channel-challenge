@@ -3,9 +3,18 @@
 #include <stdbool.h>
 #include <string.h>
 #include <math.h>
-#include <unistd.h>
+
+#define SLOWNESS 100000
 
 const char* secret = "INFORMATIONISTHERESOLUTIONOFUNCERTAINTY";
+
+int slowdown() {
+    int sum = 0;
+    for (int i=0; i <= SLOWNESS; i++) {
+        sum += i;
+    }
+    return sum;
+}
 
 bool check_secret(char *provided) {
     size_t secret_len = strlen(secret);
@@ -23,7 +32,7 @@ bool check_secret(char *provided) {
             return false;
         }
 
-        usleep(100);
+        slowdown();
     }
 
     return true;
